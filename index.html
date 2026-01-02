@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>餐饮巡店管理系统</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css">
+    <style>
+        body { background-color: #f2f5f8; font-family: sans-serif; }
+        .welcome-card { background: linear-gradient(135deg, #007aff, #0056b3); color: white; padding: 30px 20px; text-align: center; }
+        .info-section { padding: 20px; }
+        .notice { font-size: 14px; color: #666; background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; line-height: 1.6; }
+        .time-display { font-size: 18px; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="welcome-card">
+        <h2>连锁餐饮督导系统</h2>
+        <div class="time-display">{{ date }} {{ time }}</div>
+    </div>
+
+    <div class="info-section">
+        <div class="notice">
+            <b>📢 巡店须知：</b><br>
+            请确保以下 6 项照片真实有效。点击下方按钮进入飞书云端数据库，数据将实时同步至总部后台。
+        </div>
+
+        <van-button type="info" block round size="large" icon="passed" @click="goToFeishu">
+            开始录入巡店数据
+        </van-button>
+        
+        <p style="text-align: center; color: #999; font-size: 12px; margin-top: 20px;">
+            数据已接入飞书多维表格安全加密传输
+        </p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                date: '',
+                time: ''
+            }
+        },
+        created() {
+            const now = new Date();
+            this.date = now.toLocaleDateString();
+            this.time = now.getHours().toString().padStart(2, '0') + ":" + 
+                        now.getMinutes().toString().padStart(2, '0');
+        },
+        methods: {
+            goToFeishu() {
+                // 
+                window.location.href = 'https://z1ukps6wuzd.feishu.cn/share/base/form/shrcnvzLQ0CcmJU9kx79d8QDNjg';
+            }
+        }
+    });
+</script>
+</body>
+</html>
